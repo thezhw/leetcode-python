@@ -38,7 +38,29 @@ class Solution:
         return True
 
 
-solution = Solution()
+# 一次迭代
+class Solution1:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows = [{} for i in range(9)]
+        cols = [{} for i in range(9)]
+        boxes = [{} for i in range(9)]
+
+        for i in range(9):
+            for j in range(9):
+                num = board[i][j]
+                if num != '.':
+                    box_index = (i // 3) * 3 + j // 3
+                    rows[i][num] = rows[i].get(num, 0) + 1
+                    cols[j][num] = cols[j].get(num, 0) + 1
+                    boxes[box_index][num] = boxes[box_index].get(num, 0) + 1
+
+                    if rows[i][num] > 1 or cols[j][num] > 1 or boxes[box_index][num] > 1:
+                        return False
+
+        return True
+
+
+solution = Solution1()
 print(solution.isValidSudoku([
     ["5", "3", ".", ".", "7", ".", ".", ".", "."],
     ["6", ".", ".", "1", "9", "5", ".", ".", "."],
@@ -61,4 +83,16 @@ print(solution.isValidSudoku([
     [".", "6", ".", ".", ".", ".", "2", "8", "."],
     [".", ".", ".", "4", "1", "9", ".", ".", "5"],
     [".", ".", ".", ".", "8", ".", ".", "7", "9"]
+]))
+
+print(solution.isValidSudoku([
+    [".", ".", "4", ".", ".", ".", "6", "3", "."],
+    [".", ".", ".", ".", ".", ".", ".", ".", "."],
+    ["5", ".", ".", ".", ".", ".", ".", "9", "."],
+    [".", ".", ".", "5", "6", ".", ".", ".", "."],
+    ["4", ".", "3", ".", ".", ".", ".", ".", "1"],
+    [".", ".", ".", "7", ".", ".", ".", ".", "."],
+    [".", ".", ".", "5", ".", ".", ".", ".", "."],
+    [".", ".", ".", ".", ".", ".", ".", ".", "."],
+    [".", ".", ".", ".", ".", ".", ".", ".", "."]
 ]))
