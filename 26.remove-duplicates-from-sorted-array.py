@@ -1,6 +1,7 @@
 from typing import List
 
 
+# 双指针
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         if len(nums) == 0:
