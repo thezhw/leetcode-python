@@ -5,7 +5,7 @@
 
 
 def isBadVersion(version):
-    return version >= 4
+    return version >= 1
 
 
 # 超时
@@ -23,15 +23,14 @@ class Solution:
 # 二分查找法
 class Solution1:
     def firstBadVersion(self, n):
-        left = 1
-        right = n
+        left, right = 1, n
 
         while left < right:
             mid = left + (right - left) // 2  # java c++ 等语言防止溢出
-            if isBadVersion(mid):
-                right = mid
-            else:
+            if not isBadVersion(mid):
                 left = mid + 1
+            else:
+                right = mid
 
         return right
 
