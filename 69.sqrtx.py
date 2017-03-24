@@ -17,7 +17,22 @@ class Solution:
         return right
 
 
-solution = Solution()
+class Solution1:
+    def mySqrt(self, x: int) -> int:
+        left, right = 0, x // 2 + 1
+        while left < right:
+            # mid 的含义: 第一个平方小于等于 x 的数
+            mid = (left + right + 1) // 2
+
+            if mid * mid > x:
+                right = mid - 1
+            else:
+                left = mid
+
+        return left
+
+
+solution = Solution1()
 print(solution.mySqrt(0))
 print(solution.mySqrt(8))
 print(solution.mySqrt(9))
