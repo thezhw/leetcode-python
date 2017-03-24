@@ -4,7 +4,12 @@
 
 
 def guess(num: int) -> int:
-    return num == 3
+    if num == 3:
+        return 0
+    elif num < 3:
+        return 1
+    else:
+        return -1
 
 
 class Solution:
@@ -22,3 +27,21 @@ class Solution:
                 right = mid - 1
 
         return -1
+
+
+class Solution1:
+    def guessNumber(self, n: int) -> int:
+        left, right = 1, n
+
+        while left < right:
+            mid = (left + right) // 2
+            if guess(mid) > 0:
+                left = mid + 1
+            else:
+                right = mid
+
+        return left
+
+
+solution = Solution1()
+print(solution.guessNumber(100000))
