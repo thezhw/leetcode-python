@@ -9,8 +9,11 @@ class Solution:
                 top = stack.pop() if stack else '#'
                 if top != mapping[char]:
                     return False
-
             else:
                 stack.append(char)
 
         return not stack
+
+
+solution = Solution()
+print(solution.isValid(')'))
