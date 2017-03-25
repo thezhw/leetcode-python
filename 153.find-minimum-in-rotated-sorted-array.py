@@ -20,7 +20,21 @@ class Solution:
         return nums[0]
 
 
-solution = Solution()
+class Solution1:
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] >= nums[left] and nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right = mid
+
+        return nums[left]
+
+
+solution = Solution1()
 print(solution.findMin([2, 3, 1]))
 print(solution.findMin([3, 4, 5, 1, 2]))
 print(solution.findMin([0, 1, 2, 3, 4]))
